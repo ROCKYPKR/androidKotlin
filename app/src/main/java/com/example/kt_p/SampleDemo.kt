@@ -50,9 +50,7 @@ class PayPalPaymentGateWay:PaymentProcess{
 
  }
 
-interface  Repository{
-        fun processPayment(amount: Double):String
-}
+
 
 interface DataSourceI {
     var latestNews: Flow<List<String>>
@@ -60,20 +58,7 @@ interface DataSourceI {
 
 
 
-class NewsRepository @Inject constructor(val newsRemoteDataSource:DataSourceI) {
-    val favoriteLatestNews: Flow<List<String>> =
-        newsRemoteDataSource.latestNews
-            .onStart {  }
-            .buffer()
-            .onCompletion {
 
-            }.flowOn(Dispatchers.IO)
-            .onEach {  }
-            .flowOn(Dispatchers.Main)
-            .catch { exception -> emit(emptyList()) }
-            // If an error happens, emit the last cached values
-
-}
 
 @Entity
 data class TaskItem(

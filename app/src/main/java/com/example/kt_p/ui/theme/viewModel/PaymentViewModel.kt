@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlin.jvm.Throws
 
-class PaymentViewModel (val respository:Repository ): ViewModel(){
+class PaymentViewModel (private val respository:Repository ): ViewModel(){
     private val _uiState = MutableStateFlow(LoadingState.Success(emptyList()))
     val state: StateFlow<LoadingState> = _uiState
 
